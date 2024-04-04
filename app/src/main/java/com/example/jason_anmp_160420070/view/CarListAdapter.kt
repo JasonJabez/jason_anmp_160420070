@@ -25,12 +25,11 @@ class CarListAdapter(val carList:ArrayList<Car>): RecyclerView.Adapter<CarListAd
         holder.binding.txtYear.text = carList[position].year.toString()
     }
 
-    fun updateStudentList(newCarList: ArrayList<Car>) {
+    fun updateCarsList(newCarList: ArrayList<Car>) {
         carList.clear()
         carList.addAll(newCarList)
         notifyDataSetChanged()
     }
-
 
     override fun getItemCount(): Int {
         return carList.size

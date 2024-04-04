@@ -31,7 +31,7 @@ class CarListFragment : Fragment() {
 
     fun observeViewModel() {
         viewModel.carsLD.observe(viewLifecycleOwner, Observer {
-            carListAdapter.updateStudentList(it)
+            carListAdapter.updateCarsList(it)
         })
 
         viewModel.carLoadErrorLD.observe(viewLifecycleOwner, Observer {

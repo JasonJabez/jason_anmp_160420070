@@ -9,6 +9,7 @@ import com.android.volley.RequestQueue
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.example.jason_anmp_160420070.model.Car
+import com.example.jason_anmp_160420070.model.Student
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 
@@ -24,17 +25,19 @@ class CarViewModel(application: Application) : AndroidViewModel(application){
         carLoadErrorLD.value = false
 
         queue = Volley.newRequestQueue(getApplication())
-        val url = "http://10.0.2.2/cars.json"
+        val url = "http://10.0.2.2/cars/cars.json"
         val stringRequest = StringRequest(
             Request.Method.GET, url, {
-                val sType = object : TypeToken<List<Car>>() { }.type
-                val result = Gson().fromJson<List<Car>>(it,sType)
+                val cType = object : TypeToken<List<Car>>() { }.type
+                val result = Gson().fromJson<List<Car>>(it,cType)
                 carsLD.value = result as ArrayList<Car>?
-
             },
             {
                 Log.d("VolleyError", it.toString())
             })
+        stringRequest.tag = TAG
+        queue?.add(stringRequest)
+
 
         carLoadErrorLD.value = false
         carloadLD.value = false

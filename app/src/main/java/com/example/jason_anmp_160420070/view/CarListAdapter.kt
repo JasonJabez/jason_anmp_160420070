@@ -16,7 +16,6 @@ class CarListAdapter(val carList:ArrayList<Car>): RecyclerView.Adapter<CarListAd
         val binding = CarListItemBinding.inflate(
             LayoutInflater.from(parent.context), parent, false)
         return CarViewHolder(binding)
-
     }
 
     override fun onBindViewHolder(holder: CarViewHolder, position: Int) {

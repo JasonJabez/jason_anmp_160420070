@@ -15,7 +15,6 @@ class StudentListAdapter(val studentList:ArrayList<Student>): RecyclerView.Adapt
         val binding = StudentListItemBinding.inflate(
             LayoutInflater.from(parent.context), parent, false)
         return StudentViewHolder(binding)
-
     }
 
     override fun onBindViewHolder(holder: StudentViewHolder, position: Int) {
@@ -33,7 +32,6 @@ class StudentListAdapter(val studentList:ArrayList<Student>): RecyclerView.Adapt
         studentList.addAll(newStudentList)
         notifyDataSetChanged()
     }
-
 
     override fun getItemCount(): Int {
         return studentList.size

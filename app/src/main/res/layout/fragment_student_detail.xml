@@ -17,12 +17,13 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="151dp"
             android:layout_marginTop="62dp"
+            android:contentDescription="Student image"
             android:src="@drawable/ic_launcher_foreground"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputLayout"
+            android:id="@+id/textInputLayoutID"
             android:layout_width="409dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="1dp"
@@ -38,13 +39,13 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputLayout2"
+            android:id="@+id/textInputLayoutName"
             android:layout_width="409dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="1dp"
             android:layout_marginTop="32dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textInputLayout">
+            app:layout_constraintTop_toBottomOf="@+id/textInputLayoutID">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/txtName"
@@ -54,13 +55,13 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputLayout3"
+            android:id="@+id/textInputLayoutBod"
             android:layout_width="409dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="1dp"
             android:layout_marginTop="32dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textInputLayout2">
+            app:layout_constraintTop_toBottomOf="@+id/textInputLayoutName">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/txtBod"
@@ -70,13 +71,13 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputLayout4"
+            android:id="@+id/textInputLayoutPhone"
             android:layout_width="409dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="1dp"
             android:layout_marginTop="32dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textInputLayout3">
+            app:layout_constraintTop_toBottomOf="@+id/textInputLayoutBod">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/txtPhone"
@@ -93,7 +94,7 @@
             android:layout_marginTop="42dp"
             android:text="Update"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textInputLayout4" />
+            app:layout_constraintTop_toBottomOf="@+id/textInputLayoutPhone" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>

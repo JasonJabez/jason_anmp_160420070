@@ -32,7 +32,6 @@ class DetailViewModel(application: Application) : AndroidViewModel(application){
                 val result = Gson().fromJson<Student>(it,cType)
 
                 studentLD.value = result
-                Log.d("showVolley", result.toString())
             },
             {
                 Log.d("VolleyError", it.toString())

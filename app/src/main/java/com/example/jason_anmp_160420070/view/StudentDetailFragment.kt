@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import com.example.jason_anmp_160420070.databinding.FragmentStudentDetailBinding
 import com.example.jason_anmp_160420070.viewmodel.DetailViewModel
+import com.squareup.picasso.Picasso
 import java.util.Timer
 import kotlin.concurrent.schedule
 
@@ -39,6 +40,7 @@ class StudentDetailFragment : Fragment() {
                 binding.txtName.setText(myStudent?.name.toString())
                 binding.txtBod.setText(myStudent?.dob.toString())
                 binding.txtPhone.setText(myStudent?.phone.toString())
+                Picasso.get().load(myStudent?.photoUrl).fit().centerCrop().into(binding.imageView2)
             }, 500)
         }
 

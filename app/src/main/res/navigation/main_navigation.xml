@@ -47,6 +47,9 @@
         <action
             android:id="@+id/action_fragmentNewsDetails_self"
             app:destination="@id/fragmentNewsDetails" />
+        <action
+            android:id="@+id/action_fragmentNewsDetails_to_fragmentNewsList"
+            app:destination="@id/fragmentNewsList" />
     </fragment>
     <fragment
         android:id="@+id/fragmentLoginActionChooser"

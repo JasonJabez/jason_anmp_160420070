@@ -29,7 +29,16 @@ class NewsListViewModel : ViewModel() {
         newsLoadErrorLD.value = true
         loadingLD.value = true
 
-        newsSingularLD.value = News(1,"Orange cat racism", "Not an Orange", "Orange cats face persecution..", "test1")
+        newsSingularLD.value = News(1,"Orange cat racism", "Not an Orange", "Orange cats face persecution..",
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed consectetur interdum diam, a rhoncus justo lobortis sed. Nulla nec turpis velit. Ut quis nulla vel libero sagittis fermentum quis ac purus. In in maximus augue. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Integer non pretium ante, non venenatis leo. Morbi vel sagittis diam. Duis ut nisi at nibh commodo mollis. Donec convallis volutpat maximus. Praesent sapien urna, tincidunt ut euismod quis, consequat eu nisl.\n" +
+                "\n" +
+                "Donec luctus a urna ac tristique. Morbi fermentum, massa sit amet hendrerit malesuada, nisl neque euismod odio, ut scelerisque urna odio at nulla. Pellentesque bibendum egestas tortor ac cursus. Morbi libero turpis, eleifend bibendum mattis non, pretium a dui. Cras venenatis tempor justo, in pellentesque ligula. Duis et vehicula turpis. Aenean non tortor ornare odio rhoncus finibus. Cras euismod metus eget tempor congue.\n" +
+                "\n" +
+                "Donec eget massa diam. Nam ornare mollis diam sed scelerisque. Suspendisse molestie in velit dictum malesuada. Praesent venenatis ipsum sapien, eget varius elit venenatis vel. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Fusce mollis lacus bibendum turpis auctor consequat. Ut vel bibendum orci, ut mattis est. Mauris ullamcorper vestibulum nisi vel commodo. Quisque placerat venenatis dolor ullamcorper interdum. Duis elementum feugiat nisl, vitae commodo elit vehicula et. Sed fringilla dolor ex, sit amet interdum mauris viverra ac. Nulla consectetur cursus urna eu accumsan.\n" +
+                "\n" +
+                "Vivamus at erat nunc. Nunc erat arcu, lacinia eu neque ut, aliquet finibus velit. Cras venenatis nibh ac suscipit condimentum. Proin hendrerit odio in venenatis consectetur. Sed lacinia sollicitudin libero, maximus vehicula dui tincidunt quis. Etiam quis laoreet ligula, vitae egestas tellus. Vestibulum sem magna, malesuada sed vulputate et, efficitur eu dui. Donec et dui iaculis, tempus augue nec, semper ante. Vivamus sagittis tincidunt dui. Cras sit amet vulputate odio. Etiam quis feugiat orci. Donec lobortis lorem id quam ullamcorper pellentesque.\n" +
+                "\n" +
+                "Morbi eu lorem at urna placerat mattis. Donec ac nulla vitae nisi consectetur auctor quis ut velit. Integer rutrum rutrum mi, egestas malesuada nibh lacinia nec. Vivamus vitae mi in est iaculis tempus vel nec risus. Vivamus id euismod dolor. Suspendisse potenti. Nulla neque ante, ornare nec egestas accumsan, accumsan in nisl. Mauris a tellus id tellus tristique aliquam in ut felis. Integer suscipit ornare leo, quis auctor turpis posuere et. Vivamus nec eros in velit ornare faucibus. Curabitur ut nunc nisi. Fusce mattis tincidunt lacus at pretium. Fusce ut tincidunt massa. Nullam egestas velit finibus quam faucibus, quis interdum tellus scelerisque. Maecenas in felis id massa faucibus scelerisque. ")
 
         newsLoadErrorLD.value = false
         loadingLD.value = false

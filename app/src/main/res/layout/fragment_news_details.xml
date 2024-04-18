@@ -74,15 +74,28 @@
 
         <TextView
             android:id="@+id/textViewPage"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="64dp"
             android:layout_marginTop="55dp"
             android:layout_marginEnd="64dp"
             android:text="Page/Page"
+            android:textAlignment="center"
             app:layout_constraintEnd_toStartOf="@+id/btnForwardNews"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toEndOf="@+id/btnBackNews"
             app:layout_constraintTop_toBottomOf="@+id/textViewNewsText" />
+
+        <Button
+            android:id="@+id/btnBackList"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="65dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginEnd="64dp"
+            android:text="Back to List"
+            app:layout_constraintEnd_toStartOf="@+id/btnForwardNews"
+            app:layout_constraintStart_toEndOf="@+id/btnBackNews"
+            app:layout_constraintTop_toBottomOf="@+id/textViewPage" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

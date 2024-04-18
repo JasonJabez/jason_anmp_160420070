@@ -11,6 +11,7 @@ import com.example.jason_anmp_160420070.R
 import com.example.jason_anmp_160420070.databinding.FragmentNewsDetailsBinding
 import com.example.jason_anmp_160420070.viewmodel.NewsListViewModel
 import com.example.jason_anmp_160420070.viewmodel.UserDetailViewModel
+import kotlin.math.ceil
 
 class FragmentNewsDetails : Fragment() {
 
@@ -31,9 +32,33 @@ class FragmentNewsDetails : Fragment() {
         newsDetailsViewModel.fetch(newsId)
 
         val newsData = newsDetailsViewModel.newsSingularLD.value
+
+        var newsText_paged = ""
+        if(newsData?.newsText?.length!! <= (newsPage-1)*1100 + 1101){
+            newsText_paged = newsData?.newsText!!.substring((newsPage-1)*1100 + 1, newsData?.newsText?.length!!)
+        }else if(newsPage > 1){
+            newsText_paged = newsData?.newsText!!.substring((newsPage-1)*1100 + 1, (newsPage-1)*1100 + 1101)
+        }else{
+            newsText_paged = newsData?.newsText!!.substring(0, 1100)
+        }
+
         binding.textViewTitle.setText(newsData?.title)
         binding.textViewAuthor.setText("By: " + newsData?.author)
-        binding.textViewNewsText.setText(newsData?.newsText)
+        binding.textViewNewsText.setText(newsText_paged)
+        binding.textViewPage.setText(newsPage.toString() + " / " + ceil(newsData?.newsText?.length!!.toDouble()/1100).toInt().toString())
+
+        if(newsPage == 1){
+            binding.btnBackNews.isEnabled = false
+        }
+
+        if(newsData?.newsText?.length!! <= (newsPage-1)*1100 + 1101){
+            binding.btnForwardNews.isEnabled = false
+        }
+
+        binding.btnBackList.setOnClickListener {
+            val action = FragmentNewsDetailsDirections.actionFragmentNewsDetailsToFragmentNewsList()
+            Navigation.findNavController(it).navigate(action)
+        }
 
         binding.btnBackNews.setOnClickListener {
             val action = FragmentNewsDetailsDirections.actionFragmentNewsDetailsSelf(newsId, newsPage-1)

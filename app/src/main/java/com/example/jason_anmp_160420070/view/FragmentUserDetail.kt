@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
 import com.example.jason_anmp_160420070.databinding.FragmentUserDetailBinding
 import com.example.jason_anmp_160420070.viewmodel.UserDetailViewModel
 import com.squareup.picasso.Picasso
@@ -32,12 +33,23 @@ class FragmentUserDetail : Fragment() {
 
             //TO BE CHANGED
             Handler().postDelayed(Runnable{
-                val myStudent = userDetailViewModel.userLD.value
-                binding.txtFirstName.setText(myStudent?.firstName.toString())
-                binding.txtLastName.setText(myStudent?.lastName.toString())
-                binding.txtUsernameDetails.setText(myStudent?.username.toString())
-                binding.txtPasswordDetails.setText(myStudent?.password.toString())
+                val myUser = userDetailViewModel.userLD.value
+                binding.txtFirstName.setText(myUser?.firstName.toString())
+                binding.txtLastName.setText(myUser?.lastName.toString())
+                binding.txtUsernameDetails.setText(myUser?.username.toString())
+                binding.txtPasswordDetails.setText(myUser?.password.toString())
             }, 500)
+        }
+
+        binding.btnLogout.setOnClickListener{
+            val action = FragmentUserDetailDirections.actionFragmentUserDetailToFragmentLogin()
+            Navigation.findNavController(it).navigate(action)
+        }
+
+        binding.btnUpdateUserDetails.setOnClickListener{
+            val userId = FragmentUserDetailArgs.fromBundle(requireArguments()).userId
+            val action = FragmentUserDetailDirections.actionFragmentUserDetailToFragmentLoginActionChooser(userId)
+            Navigation.findNavController(it).navigate(action)
         }
 
         return binding.root

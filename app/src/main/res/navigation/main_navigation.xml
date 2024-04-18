@@ -19,7 +19,11 @@
     <fragment
         android:id="@+id/fragmentRegister"
         android:name="com.example.jason_anmp_160420070.view.FragmentRegister"
-        android:label="FragmentRegister" />
+        android:label="FragmentRegister" >
+        <action
+            android:id="@+id/action_fragmentRegister_to_fragmentLogin"
+            app:destination="@id/fragmentLogin" />
+    </fragment>
     <fragment
         android:id="@+id/fragmentNewsList"
         android:name="com.example.jason_anmp_160420070.view.FragmentNewsList"
@@ -61,5 +65,11 @@
         <argument
             android:name="userId"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_fragmentUserDetail_to_fragmentLogin"
+            app:destination="@id/fragmentLogin" />
+        <action
+            android:id="@+id/action_fragmentUserDetail_to_fragmentLoginActionChooser"
+            app:destination="@id/fragmentLoginActionChooser" />
     </fragment>
 </navigation>

@@ -3,24 +3,63 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_navigation"
-    app:startDestination="@id/studentListFragment">
+    app:startDestination="@id/fragmentLogin">
 
     <fragment
-        android:id="@+id/studentListFragment"
-        android:name="com.example.jason_anmp_160420070.view.StudentListFragment"
-        android:label="fragment_student_list"
-        tools:layout="@layout/fragment_student_list" >
+        android:id="@+id/fragmentLogin"
+        android:name="com.example.jason_anmp_160420070.view.FragmentLogin"
+        android:label="FragmentLogin" >
         <action
-            android:id="@+id/actionStudentDetail"
-            app:destination="@id/studentDetailFragment" />
+            android:id="@+id/action_fragmentLogin_to_fragmentRegister"
+            app:destination="@id/fragmentRegister" />
+        <action
+            android:id="@+id/action_fragmentLogin_to_fragmentLoginActionChooser"
+            app:destination="@id/fragmentLoginActionChooser" />
     </fragment>
     <fragment
-        android:id="@+id/studentDetailFragment"
-        android:name="com.example.jason_anmp_160420070.view.StudentDetailFragment"
-        android:label="fragment_student_detail"
-        tools:layout="@layout/fragment_student_detail" >
+        android:id="@+id/fragmentRegister"
+        android:name="com.example.jason_anmp_160420070.view.FragmentRegister"
+        android:label="FragmentRegister" />
+    <fragment
+        android:id="@+id/fragmentNewsList"
+        android:name="com.example.jason_anmp_160420070.view.FragmentNewsList"
+        android:label="fragment_news_list"
+        tools:layout="@layout/fragment_news_list" >
+        <action
+            android:id="@+id/action_fragmentNewsList_to_fragmentNewsDetails"
+            app:destination="@id/fragmentNewsDetails" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentNewsDetails"
+        android:name="com.example.jason_anmp_160420070.view.FragmentNewsDetails"
+        android:label="fragment_news_details"
+        tools:layout="@layout/fragment_news_details" >
         <argument
-            android:name="student_id"
-            app:argType="string" />
+            android:name="newsId"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentLoginActionChooser"
+        android:name="com.example.jason_anmp_160420070.view.FragmentLoginActionChooser"
+        android:label="fragment_login_action_chooser"
+        tools:layout="@layout/fragment_login_action_chooser" >
+        <action
+            android:id="@+id/action_fragmentLoginActionChooser_to_fragmentNewsList"
+            app:destination="@id/fragmentNewsList" />
+        <action
+            android:id="@+id/action_fragmentLoginActionChooser_to_fragmentUserDetail"
+            app:destination="@id/fragmentUserDetail" />
+        <argument
+            android:name="userId"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentUserDetail"
+        android:name="com.example.jason_anmp_160420070.view.FragmentUserDetail"
+        android:label="fragment_user_detail"
+        tools:layout="@layout/fragment_user_detail" >
+        <argument
+            android:name="userId"
+            app:argType="integer" />
     </fragment>
 </navigation>

@@ -8,14 +8,13 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.jason_anmp_160420070.R
-import com.example.jason_anmp_160420070.databinding.FragmentStudentListBinding
-import com.example.jason_anmp_160420070.viewmodel.ListViewModel
+import com.example.jason_anmp_160420070.databinding.FragmentNewsListBinding
+import com.example.jason_anmp_160420070.viewmodel.NewsListViewModel
 
-class StudentListFragment : Fragment() {
-    private lateinit var viewModel: ListViewModel
-    private val studentListAdapter  = StudentListAdapter(arrayListOf())
-    private lateinit var binding: FragmentStudentListBinding
+class FragmentNewsList : Fragment() {
+    private lateinit var viewModel: NewsListViewModel
+    private val adapterNewsList  = AdapterNewsList(arrayListOf())
+    private lateinit var binding: FragmentNewsListBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,17 +25,17 @@ class StudentListFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        binding = FragmentStudentListBinding.inflate(inflater,container, false)
+        binding = FragmentNewsListBinding.inflate(inflater,container, false)
 
         return binding.root
     }
 
     fun observeViewModel() {
-        viewModel.studentsLD.observe(viewLifecycleOwner, Observer {
-            studentListAdapter.updateStudentList(it)
+        viewModel.newsLD.observe(viewLifecycleOwner, Observer {
+            adapterNewsList.updateStudentList(it)
         })
 
-        viewModel.studentLoadErrorLD.observe(viewLifecycleOwner, Observer {
+        viewModel.newsLoadErrorLD.observe(viewLifecycleOwner, Observer {
             if(it == true) {
                 binding.txtError?.visibility = View.VISIBLE
             } else {
@@ -59,11 +58,11 @@ class StudentListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel = ViewModelProvider(this).get(ListViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(NewsListViewModel::class.java)
         viewModel.refresh()
 
         binding.recView.layoutManager = LinearLayoutManager(context)
-        binding.recView.adapter = studentListAdapter
+        binding.recView.adapter = adapterNewsList
 
         observeViewModel()
     }

@@ -13,19 +13,29 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="186dp">
+
+            <TextView
+                android:id="@+id/txtSummary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="9dp"
+                android:text="Summary"
+                app:layout_constraintStart_toEndOf="@+id/imageView"
+                app:layout_constraintTop_toBottomOf="@+id/txtAuthor" />
 
             <ImageView
                 android:id="@+id/imageView"
-                android:layout_width="117dp"
-                android:layout_height="128dp"
+                android:layout_width="155dp"
+                android:layout_height="184dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/ic_launcher_foreground"
                 tools:srcCompat="@drawable/ic_launcher_foreground" />
 
             <TextView
-                android:id="@+id/txtId"
+                android:id="@+id/txtNewsTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -35,21 +45,21 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/txtName"
+                android:id="@+id/txtAuthor"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="9dp"
-                android:text="Student Name"
+                android:text="Author"
                 app:layout_constraintStart_toEndOf="@+id/imageView"
-                app:layout_constraintTop_toBottomOf="@+id/txtId" />
+                app:layout_constraintTop_toBottomOf="@+id/txtNewsTitle" />
 
             <Button
                 android:id="@+id/btnDetail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="188dp"
-                android:layout_marginTop="80dp"
+                android:layout_marginStart="155dp"
+                android:layout_marginTop="128dp"
                 android:text="Details"
                 app:layout_constraintStart_toEndOf="@+id/imageView"
                 app:layout_constraintTop_toTopOf="parent" />

@@ -41,6 +41,12 @@
         <argument
             android:name="newsId"
             app:argType="integer" />
+        <argument
+            android:name="newsPage"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_fragmentNewsDetails_self"
+            app:destination="@id/fragmentNewsDetails" />
     </fragment>
     <fragment
         android:id="@+id/fragmentLoginActionChooser"

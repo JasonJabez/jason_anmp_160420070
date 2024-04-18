@@ -23,7 +23,7 @@ class AdapterNewsList(val newsList:ArrayList<News>): RecyclerView.Adapter<Adapte
         holder.binding.txtSummary.text = newsList[position].summary
 
         holder.binding.btnDetail.setOnClickListener {
-            val action = FragmentNewsListDirections.actionFragmentNewsListToFragmentNewsDetails(newsList[position].id!!)
+            val action = FragmentNewsListDirections.actionFragmentNewsListToFragmentNewsDetails(newsList[position].id!!, 1)
             Navigation.findNavController(it).navigate(action)
         }
     }

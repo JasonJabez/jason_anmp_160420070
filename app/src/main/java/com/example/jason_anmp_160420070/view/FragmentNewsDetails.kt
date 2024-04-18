@@ -25,6 +25,7 @@ class FragmentNewsDetails : Fragment() {
         // Inflate the layout for this fragment
         val binding = FragmentNewsDetailsBinding.inflate(inflater, container, false)
         val newsId = FragmentNewsDetailsArgs.fromBundle(requireArguments()).newsId
+        val newsPage = FragmentNewsDetailsArgs.fromBundle(requireArguments()).newsPage
 
         var newsDetailsViewModel = ViewModelProvider(this).get(NewsListViewModel::class.java)
         newsDetailsViewModel.fetch(newsId)
@@ -33,6 +34,16 @@ class FragmentNewsDetails : Fragment() {
         binding.textViewTitle.setText(newsData?.title)
         binding.textViewAuthor.setText("By: " + newsData?.author)
         binding.textViewNewsText.setText(newsData?.newsText)
+
+        binding.btnBackNews.setOnClickListener {
+            val action = FragmentNewsDetailsDirections.actionFragmentNewsDetailsSelf(newsId, newsPage-1)
+            Navigation.findNavController(it).navigate(action)
+        }
+
+        binding.btnForwardNews.setOnClickListener {
+            val action = FragmentNewsDetailsDirections.actionFragmentNewsDetailsSelf(newsId, newsPage+1)
+            Navigation.findNavController(it).navigate(action)
+        }
 
         return binding.root
     }

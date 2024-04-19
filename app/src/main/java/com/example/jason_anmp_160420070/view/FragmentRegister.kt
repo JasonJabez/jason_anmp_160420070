@@ -40,7 +40,7 @@ class FragmentRegister : Fragment() {
                         val action = FragmentRegisterDirections.actionFragmentRegisterToFragmentLogin()
                         Navigation.findNavController(it).navigate(action)
                     }
-                }, 200)
+                }, 500)
                 Toast.makeText(binding.root.context, "Register success! Now please login.", Toast.LENGTH_SHORT).show()
             }
             else{

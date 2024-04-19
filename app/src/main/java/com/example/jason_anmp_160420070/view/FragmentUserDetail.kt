@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import com.example.jason_anmp_160420070.databinding.FragmentUserDetailBinding
@@ -47,8 +48,18 @@ class FragmentUserDetail : Fragment() {
 
         binding.btnUpdateUserDetails.setOnClickListener{
             val userId = FragmentUserDetailArgs.fromBundle(requireArguments()).userId
-            val action = FragmentUserDetailDirections.actionFragmentUserDetailToFragmentLoginActionChooser(userId)
-            Navigation.findNavController(it).navigate(action)
+            var firstName = binding.txtFirstName.text.toString()
+            var lastName = binding.txtLastName.text.toString()
+            var password = binding.txtPasswordDetails.text.toString()
+
+            var userDetailViewModel = ViewModelProvider(this).get(UserDetailViewModel::class.java)
+            userDetailViewModel.updateUser(firstName, lastName, password, userId)
+
+            Handler().postDelayed(Runnable{
+                val action = FragmentUserDetailDirections.actionFragmentUserDetailToFragmentLoginActionChooser(userId)
+                Navigation.findNavController(it).navigate(action)
+                Toast.makeText(binding.root.context, "Data updated successfully!", Toast.LENGTH_SHORT).show()
+            }, 500)
         }
 
         return binding.root

@@ -90,7 +90,7 @@ class FragmentNewsDetails : Fragment() {
                 )
                 Navigation.findNavController(it).navigate(action)
             }
-        }, 200)
+        }, 500)
         return binding.root
     }
 

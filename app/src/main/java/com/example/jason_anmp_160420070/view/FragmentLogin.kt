@@ -12,6 +12,7 @@ import androidx.navigation.Navigation
 import com.example.jason_anmp_160420070.R
 import com.example.jason_anmp_160420070.databinding.FragmentLoginBinding
 import com.example.jason_anmp_160420070.viewmodel.UserDetailViewModel
+import com.squareup.picasso.Picasso
 
 class FragmentLogin : Fragment() {
 
@@ -26,6 +27,8 @@ class FragmentLogin : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val binding = FragmentLoginBinding.inflate(inflater, container, false)
+
+        Picasso.get().load("https://pbs.twimg.com/profile_images/785958695272259584/Hz_YL8Ov_400x400.jpg").fit().centerCrop().into(binding.imageViewMainApp)
 
         binding.btnGoToRegister.setOnClickListener{
             val action = FragmentLoginDirections.actionFragmentLoginToFragmentRegister()
@@ -46,7 +49,7 @@ class FragmentLogin : Fragment() {
                 }else{
                     Toast.makeText(binding.root.context, "Login tidak berhasil.", Toast.LENGTH_SHORT).show()
                 }
-            }, 200)
+            }, 500)
         }
 
         return binding.root

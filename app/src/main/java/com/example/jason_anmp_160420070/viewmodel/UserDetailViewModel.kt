@@ -79,4 +79,23 @@ class UserDetailViewModel(application: Application) : AndroidViewModel(applicati
         stringRequest.tag = TAG
         queue?.add(stringRequest)
     }
+
+    fun updateUser(firstName: String, lastName: String, password: String, id: Int){
+        queue = Volley.newRequestQueue(getApplication())
+        val url =
+            "http://10.0.2.2/160420070_anmp_uts/user.php?action=update&firstName=$firstName&lastName=$lastName&password=$password&userID=$id"
+        val stringRequest = StringRequest(
+            Request.Method.GET, url, {
+                val cType = object : TypeToken<List<User>>() { }.type
+                val result = Gson().fromJson<List<User>>(it,cType)
+
+                userLD.value = result[0]
+            },
+            {
+                Log.d("VolleyError", it.toString())
+            })
+
+        stringRequest.tag = TAG
+        queue?.add(stringRequest)
+    }
 }

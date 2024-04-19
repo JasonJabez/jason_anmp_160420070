@@ -35,24 +35,6 @@ class FragmentNewsList : Fragment() {
             adapterNewsList.updateStudentList(it)
         })
 
-        viewModel.newsLoadErrorLD.observe(viewLifecycleOwner, Observer {
-            if(it == true) {
-                binding.txtError?.visibility = View.VISIBLE
-            } else {
-                binding.txtError?.visibility = View.GONE
-            }
-        })
-
-        viewModel.loadingLD.observe(viewLifecycleOwner, Observer {
-            if(it == true) {
-                binding.recView.visibility = View.GONE
-                binding.progressLoad.visibility = View.VISIBLE
-            } else {
-                binding.recView.visibility = View.VISIBLE
-                binding.progressLoad.visibility = View.GONE
-            }
-        })
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

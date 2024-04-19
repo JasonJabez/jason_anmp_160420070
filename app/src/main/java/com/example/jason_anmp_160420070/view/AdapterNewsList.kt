@@ -6,6 +6,7 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.example.jason_anmp_160420070.databinding.NewsListItemBinding
 import com.example.jason_anmp_160420070.model.News
+import com.squareup.picasso.Picasso
 
 class AdapterNewsList(val newsList:ArrayList<News>): RecyclerView.Adapter<AdapterNewsList.NewsViewHolder>() {
     class NewsViewHolder(var binding: NewsListItemBinding)
@@ -21,6 +22,8 @@ class AdapterNewsList(val newsList:ArrayList<News>): RecyclerView.Adapter<Adapte
         holder.binding.txtAuthor.text = newsList[position].author
         holder.binding.txtNewsTitle.text = newsList[position].title
         holder.binding.txtSummary.text = newsList[position].summary
+        Picasso.get().load(newsList[position].newsPicDir).fit().centerCrop().into(holder.binding.imageView)
+
 
         holder.binding.btnDetail.setOnClickListener {
             val action = FragmentNewsListDirections.actionFragmentNewsListToFragmentNewsDetails(newsList[position].id!!, 1)

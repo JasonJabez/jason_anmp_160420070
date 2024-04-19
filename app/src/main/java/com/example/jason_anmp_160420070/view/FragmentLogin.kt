@@ -1,6 +1,7 @@
 package com.example.jason_anmp_160420070.view
 
 import android.os.Bundle
+import android.os.Handler
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -38,12 +39,14 @@ class FragmentLogin : Fragment() {
             var userDetailViewModel = ViewModelProvider(this).get(UserDetailViewModel::class.java)
             userDetailViewModel.fetch(username, password)
 
-            if(userDetailViewModel.userLoadErrorLD.value == false){
-                val action = FragmentLoginDirections.actionFragmentLoginToFragmentLoginActionChooser(userDetailViewModel.userLD.value?.id!!)
-                Navigation.findNavController(it).navigate(action)
-            }else{
-                Toast.makeText(binding.root.context, "SHIT NO WORK!!!", Toast.LENGTH_SHORT).show()
-            }
+            Handler().postDelayed(Runnable{
+                if(userDetailViewModel.userLD.value != null){
+                    val action = FragmentLoginDirections.actionFragmentLoginToFragmentLoginActionChooser(userDetailViewModel.userLD.value?.id!!)
+                    Navigation.findNavController(it).navigate(action)
+                }else{
+                    Toast.makeText(binding.root.context, "Login tidak berhasil.", Toast.LENGTH_SHORT).show()
+                }
+            }, 200)
         }
 
         return binding.root

@@ -37,7 +37,7 @@ class FragmentUserDetail : Fragment() {
                 binding.txtFirstName.setText(myUser?.firstName.toString())
                 binding.txtLastName.setText(myUser?.lastName.toString())
                 binding.txtPasswordDetails.setText(myUser?.password.toString())
-            }, 500)
+            }, 200)
         }
 
         binding.btnLogout.setOnClickListener{

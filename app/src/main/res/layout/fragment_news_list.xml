@@ -27,6 +27,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="352dp"
+            android:visibility="invisible"
             app:layout_constraintTop_toTopOf="parent"
             tools:layout_editor_absoluteX="181dp" />
 
@@ -37,6 +38,7 @@
             android:layout_marginStart="128dp"
             android:layout_marginTop="368dp"
             android:text="Error while loading data."
+            android:visibility="invisible"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>

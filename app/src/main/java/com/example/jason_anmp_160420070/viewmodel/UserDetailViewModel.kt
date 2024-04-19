@@ -15,26 +15,68 @@ import com.google.gson.reflect.TypeToken
 
 class UserDetailViewModel(application: Application) : AndroidViewModel(application){
     val userLD = MutableLiveData<User>()
-    val userLoadErrorLD = MutableLiveData<Boolean>()
-    val userLoadLD = MutableLiveData<Boolean>()
+    val TAG = "volleyTag"
+    private var queue: RequestQueue? = null
 
+    //gets user with username and pass (login)
     fun fetch(username:String, password:String){
-        userLoadErrorLD.value = true
-        userLoadLD.value = true
+        queue = Volley.newRequestQueue(getApplication())
+        val url =
+            "http://10.0.2.2/160420070_anmp_uts/user.php?action=login&username=$username&password=$password"
+        val stringRequest = StringRequest(
+            Request.Method.GET, url, {
+                val cType = object : TypeToken<List<User>>() { }.type
+                val result = Gson().fromJson<List<User>>(it,cType)
 
-        userLD.value = User(1, "James", "Cameron", "jamescameron", "email", "password")
+                if(result.isNotEmpty()) {
+                    userLD.value = result[0]
+                }
+            },
+            {
+                Log.d("VolleyError", it.toString())
+            })
 
-        userLoadErrorLD.value = false
-        userLoadLD.value = false
+        stringRequest.tag = TAG
+        queue?.add(stringRequest)
     }
 
+    //gets user with ID
     fun fetch(userId: Int){
-        userLoadErrorLD.value = true
-        userLoadLD.value = true
+        queue = Volley.newRequestQueue(getApplication())
+        val url =
+            "http://10.0.2.2/160420070_anmp_uts/user.php?action=searchByID&userID=$userId"
+        val stringRequest = StringRequest(
+            Request.Method.GET, url, {
+                val cType = object : TypeToken<List<User>>() { }.type
+                val result = Gson().fromJson<List<User>>(it,cType)
 
-        userLD.value = User(1, "James", "Cameron", "jamescameron", "email", "password")
+                userLD.value = result[0]
+            },
+            {
+                Log.d("VolleyError", it.toString())
+            })
 
-        userLoadErrorLD.value = false
-        userLoadLD.value = false
+        stringRequest.tag = TAG
+        queue?.add(stringRequest)
+    }
+
+    //register
+    fun registerUser(firstName: String, lastName: String, username: String, email: String, password: String){
+        queue = Volley.newRequestQueue(getApplication())
+        val url =
+            "http://10.0.2.2/160420070_anmp_uts/user.php?action=register&firstName=$firstName&lastName=$lastName&username=$username&email=$email&password=$password"
+        val stringRequest = StringRequest(
+            Request.Method.GET, url, {
+                val cType = object : TypeToken<List<User>>() { }.type
+                val result = Gson().fromJson<List<User>>(it,cType)
+
+                userLD.value = result[0]
+            },
+            {
+                Log.d("VolleyError", it.toString())
+            })
+
+        stringRequest.tag = TAG
+        queue?.add(stringRequest)
     }
 }

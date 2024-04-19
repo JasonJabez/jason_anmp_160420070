@@ -36,7 +36,6 @@ class FragmentUserDetail : Fragment() {
                 val myUser = userDetailViewModel.userLD.value
                 binding.txtFirstName.setText(myUser?.firstName.toString())
                 binding.txtLastName.setText(myUser?.lastName.toString())
-                binding.txtUsernameDetails.setText(myUser?.username.toString())
                 binding.txtPasswordDetails.setText(myUser?.password.toString())
             }, 500)
         }

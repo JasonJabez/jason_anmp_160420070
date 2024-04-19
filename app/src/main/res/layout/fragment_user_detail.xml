@@ -16,7 +16,7 @@
             android:layout_width="409dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="1dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="25dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -32,7 +32,7 @@
             android:layout_width="409dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="1dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="25dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textInputLayoutFirstName">
 
@@ -44,29 +44,13 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputLayoutUsername"
-            android:layout_width="409dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="1dp"
-            android:layout_marginTop="32dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textInputLayoutLastName">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/txtUsername_details"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Username" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textInputLayoutPassword"
             android:layout_width="409dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="1dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="25dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textInputLayoutUsername">
+            app:layout_constraintTop_toBottomOf="@+id/textInputLayoutLastName">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/txtPassword_details"
@@ -77,13 +61,14 @@
 
         <Button
             android:id="@+id/btnUpdateUserDetails"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="156dp"
-            android:layout_marginTop="42dp"
-            android:layout_marginEnd="156dp"
-            android:text="Update"
+            android:layout_width="0dp"
+            android:layout_height="45dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="30dp"
+            android:text="Update my Data"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textInputLayoutPassword" />
 
@@ -95,6 +80,18 @@
             android:layout_marginTop="192dp"
             android:layout_marginEnd="154dp"
             android:text="Logout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnUpdateUserDetails" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="130dp"
+            android:layout_marginTop="168dp"
+            android:layout_marginEnd="130dp"
+            android:text="Or alternatively.."
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btnUpdateUserDetails" />

@@ -22,7 +22,7 @@ class UserDetailViewModel(application: Application) : AndroidViewModel(applicati
         userLoadErrorLD.value = true
         userLoadLD.value = true
 
-        userLD.value = User(1, "James", "Cameron", "jamescameron", "password")
+        userLD.value = User(1, "James", "Cameron", "jamescameron", "email", "password")
 
         userLoadErrorLD.value = false
         userLoadLD.value = false
@@ -32,7 +32,7 @@ class UserDetailViewModel(application: Application) : AndroidViewModel(applicati
         userLoadErrorLD.value = true
         userLoadLD.value = true
 
-        userLD.value = User(1, "James", "Cameron", "jamescameron", "password")
+        userLD.value = User(1, "James", "Cameron", "jamescameron", "email", "password")
 
         userLoadErrorLD.value = false
         userLoadLD.value = false

@@ -41,6 +41,8 @@ class FragmentLogin : Fragment() {
             if(userDetailViewModel.userLoadErrorLD.value == false){
                 val action = FragmentLoginDirections.actionFragmentLoginToFragmentLoginActionChooser(userDetailViewModel.userLD.value?.id!!)
                 Navigation.findNavController(it).navigate(action)
+            }else{
+                Toast.makeText(binding.root.context, "SHIT NO WORK!!!", Toast.LENGTH_SHORT).show()
             }
         }
 

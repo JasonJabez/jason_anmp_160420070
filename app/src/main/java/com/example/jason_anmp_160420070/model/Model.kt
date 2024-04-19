@@ -7,6 +7,7 @@ data class User(
     var firstName:String?,
     var lastName:String?,
     var username:String?,
+    var email:String?,
     var password:String?
 )
 
@@ -15,5 +16,6 @@ data class News(
     var title:String?,
     var author:String?,
     var summary:String?,
-    var newsText:String?
+    var newsText:String?,
+    var newsPicDir:String?
 )

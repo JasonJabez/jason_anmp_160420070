@@ -19,7 +19,7 @@ class AdapterNewsList(val newsList:ArrayList<News>): RecyclerView.Adapter<Adapte
     }
 
     override fun onBindViewHolder(holder: NewsViewHolder, position: Int) {
-        holder.binding.txtAuthor.text = newsList[position].author
+        holder.binding.txtAuthor.text = "By: " + newsList[position].author
         holder.binding.txtNewsTitle.text = newsList[position].title
         holder.binding.txtSummary.text = newsList[position].summary
         Picasso.get().load(newsList[position].newsPicDir).fit().centerCrop().into(holder.binding.imageView)

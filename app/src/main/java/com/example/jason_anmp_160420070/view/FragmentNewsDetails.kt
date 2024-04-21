@@ -37,7 +37,10 @@ class FragmentNewsDetails : Fragment() {
             val newsData = newsDetailsViewModel.newsSingularLD.value
 
             var newsText_paged = ""
-            if (newsData?.newsText?.length!! <= (newsPage - 1) * 1100 + 1101) {
+            if(newsData?.newsText?.length!! < 1100){
+                newsText_paged = newsData?.newsText!!
+            }
+            else if (newsData?.newsText?.length!! <= (newsPage - 1) * 1100 + 1101) {
                 newsText_paged = newsData?.newsText!!.substring(
                     (newsPage - 1) * 1100 + 1,
                     newsData?.newsText?.length!!

@@ -31,6 +31,12 @@ class AdapterNewsList(val newsList:ArrayList<News>): RecyclerView.Adapter<Adapte
         }
     }
 
+    fun updateNewsList(newNewsList: List<News>) {
+        newsList.clear()
+        newsList.addAll(newNewsList)
+        notifyDataSetChanged()
+    }
+
     override fun getItemCount(): Int {
         return newsList.size
     }

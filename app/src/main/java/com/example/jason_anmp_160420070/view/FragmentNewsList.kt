@@ -30,22 +30,22 @@ class FragmentNewsList : Fragment() {
         return binding.root
     }
 
-    fun observeViewModel() {
-        viewModel.newsLD.observe(viewLifecycleOwner, Observer {
-            adapterNewsList.updateStudentList(it)
-        })
-
-    }
+//    fun observeViewModel() {
+//        viewModel.newsLD.observe(viewLifecycleOwner, Observer {
+//            adapterNewsList.updateStudentList(it)
+//        })
+//
+//    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel = ViewModelProvider(this).get(NewsListViewModel::class.java)
-        viewModel.refresh()
+
+        viewModel.fetch()
 
         binding.recView.layoutManager = LinearLayoutManager(context)
         binding.recView.adapter = adapterNewsList
 
-        observeViewModel()
     }
 }

@@ -13,6 +13,7 @@ import androidx.navigation.Navigation
 import com.example.jason_anmp_160420070.R
 import com.example.jason_anmp_160420070.databinding.FragmentLoginBinding
 import com.example.jason_anmp_160420070.databinding.FragmentRegisterBinding
+import com.example.jason_anmp_160420070.model.User
 import com.example.jason_anmp_160420070.viewmodel.UserDetailViewModel
 
 
@@ -27,13 +28,19 @@ class FragmentRegister : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val binding = FragmentRegisterBinding.inflate(inflater, container, false)
+        var userDetailViewModel = ViewModelProvider(this).get(UserDetailViewModel::class.java)
 
         binding.btnRegister.setOnClickListener{
-            var userDetailViewModel = ViewModelProvider(this).get(UserDetailViewModel::class.java)
-
             if(binding.txtRegisterPassword.text.toString() == binding.txtRegisterPasswordRepeat.text.toString()){
-                userDetailViewModel.registerUser(binding.txtRegisterFname.text.toString(), binding.txtRegisterLname.text.toString(), binding.txtRegisterUsername.text.toString()
-                    , binding.txtRegisterEmail.text.toString(), binding.txtRegisterPassword.text.toString())
+                var newUser = User(
+                    firstName=binding.txtRegisterFname.text.toString(),
+                    lastName=binding.txtRegisterLname.text.toString(),
+                    username=binding.txtRegisterUsername.text.toString(),
+                    email=binding.txtRegisterEmail.text.toString(),
+                    password=binding.txtRegisterPassword.text.toString(),
+                )
+
+                userDetailViewModel.addUser(newUser)
 
                 Handler().postDelayed(Runnable{
                     if(userDetailViewModel.userLD.value != null){

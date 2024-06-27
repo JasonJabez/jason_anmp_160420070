@@ -8,94 +8,61 @@ import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
+import com.example.jason_anmp_160420070.model.ModelDatabase
 import com.example.jason_anmp_160420070.model.News
 import com.example.jason_anmp_160420070.model.User
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
+import kotlin.coroutines.CoroutineContext
 
-class UserDetailViewModel(application: Application) : AndroidViewModel(application){
-    val userLD = MutableLiveData<User>()
-    val TAG = "volleyTag"
-    private var queue: RequestQueue? = null
+class UserDetailViewModel(application: Application) : AndroidViewModel(application), CoroutineScope {
+    val userLD = MutableLiveData<User?>()
 
-    //gets user with username and pass (login)
-    fun fetch(username:String, password:String){
-        queue = Volley.newRequestQueue(getApplication())
-        val url =
-            "http://10.0.2.2/160420070_anmp_uts/user.php?action=login&username=$username&password=$password"
-        val stringRequest = StringRequest(
-            Request.Method.GET, url, {
-                val cType = object : TypeToken<List<User>>() { }.type
-                val result = Gson().fromJson<List<User>>(it,cType)
+    private var job = Job()
 
-                if(result.isNotEmpty()) {
-                    userLD.value = result[0]
-                }
-            },
-            {
-                Log.d("VolleyError", it.toString())
-            })
+    override val coroutineContext: CoroutineContext get() = job + Dispatchers.IO
 
-        stringRequest.tag = TAG
-        queue?.add(stringRequest)
+    fun fetchByID(id: Int){
+        launch {
+            val db = ModelDatabase.buildDatabase(
+                getApplication()
+            )
+
+            userLD.postValue(db.modelDao().fetchByID(id))
+        }
     }
 
-    //gets user with ID
-    fun fetch(userId: Int){
-        queue = Volley.newRequestQueue(getApplication())
-        val url =
-            "http://10.0.2.2/160420070_anmp_uts/user.php?action=searchByID&userID=$userId"
-        val stringRequest = StringRequest(
-            Request.Method.GET, url, {
-                val cType = object : TypeToken<List<User>>() { }.type
-                val result = Gson().fromJson<List<User>>(it,cType)
+    fun fetchByCreds(username: String, password: String){
+        launch {
+            val db = ModelDatabase.buildDatabase(
+                getApplication()
+            )
 
-                userLD.value = result[0]
-            },
-            {
-                Log.d("VolleyError", it.toString())
-            })
-
-        stringRequest.tag = TAG
-        queue?.add(stringRequest)
+            userLD.postValue(db.modelDao().fetchByCreds(username, password))
+        }
     }
 
-    //register
-    fun registerUser(firstName: String, lastName: String, username: String, email: String, password: String){
-        queue = Volley.newRequestQueue(getApplication())
-        val url =
-            "http://10.0.2.2/160420070_anmp_uts/user.php?action=register&firstName=$firstName&lastName=$lastName&username=$username&email=$email&password=$password"
-        val stringRequest = StringRequest(
-            Request.Method.GET, url, {
-                val cType = object : TypeToken<List<User>>() { }.type
-                val result = Gson().fromJson<List<User>>(it,cType)
+    fun addUser(user:User){
+        launch{
+            val db = ModelDatabase.buildDatabase(
+                getApplication()
+            )
 
-                userLD.value = result[0]
-            },
-            {
-                Log.d("VolleyError", it.toString())
-            })
-
-        stringRequest.tag = TAG
-        queue?.add(stringRequest)
+            db.modelDao().registerUser(user)
+        }
     }
 
-    fun updateUser(firstName: String, lastName: String, password: String, id: Int){
-        queue = Volley.newRequestQueue(getApplication())
-        val url =
-            "http://10.0.2.2/160420070_anmp_uts/user.php?action=update&firstName=$firstName&lastName=$lastName&password=$password&userID=$id"
-        val stringRequest = StringRequest(
-            Request.Method.GET, url, {
-                val cType = object : TypeToken<List<User>>() { }.type
-                val result = Gson().fromJson<List<User>>(it,cType)
+    fun updateUser(firstName:String, lastName:String, password:String, userID:Int){
+        launch{
+            val db = ModelDatabase.buildDatabase(
+                getApplication()
+            )
 
-                userLD.value = result[0]
-            },
-            {
-                Log.d("VolleyError", it.toString())
-            })
-
-        stringRequest.tag = TAG
-        queue?.add(stringRequest)
+            db.modelDao().updateUser(firstName, lastName, password, userID)
+        }
     }
 }

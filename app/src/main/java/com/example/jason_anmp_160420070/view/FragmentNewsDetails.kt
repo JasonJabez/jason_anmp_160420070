@@ -31,7 +31,7 @@ class FragmentNewsDetails : Fragment() {
         val newsPage = FragmentNewsDetailsArgs.fromBundle(requireArguments()).newsPage
 
         var newsDetailsViewModel = ViewModelProvider(this).get(NewsListViewModel::class.java)
-        newsDetailsViewModel.fetch(newsId)
+        newsDetailsViewModel.fetchByID(newsId)
 
         Handler().postDelayed(Runnable {
             val newsData = newsDetailsViewModel.newsSingularLD.value

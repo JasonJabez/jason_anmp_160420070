@@ -30,7 +30,7 @@ class FragmentUserDetail : Fragment() {
         if(arguments != null){
             val userId = FragmentUserDetailArgs.fromBundle(requireArguments()).userId
             userDetailViewModel = ViewModelProvider(this).get(UserDetailViewModel::class.java)
-            userDetailViewModel.fetch(userId)
+            userDetailViewModel.fetchByID(userId)
 
             //TO BE CHANGED
             Handler().postDelayed(Runnable{
@@ -42,6 +42,8 @@ class FragmentUserDetail : Fragment() {
         }
 
         binding.btnLogout.setOnClickListener{
+            userDetailViewModel.userLD.value = null
+
             val action = FragmentUserDetailDirections.actionFragmentUserDetailToFragmentLogin()
             Navigation.findNavController(it).navigate(action)
         }

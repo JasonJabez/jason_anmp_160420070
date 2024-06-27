@@ -9,53 +9,42 @@ import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
+import com.example.jason_anmp_160420070.model.ModelDatabase
 import com.example.jason_anmp_160420070.model.News
 import com.example.jason_anmp_160420070.model.User
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
+import kotlin.coroutines.CoroutineContext
 
-class NewsListViewModel(application: Application) : AndroidViewModel(application) {
-    val newsLD = MutableLiveData<ArrayList<News>>()
+class NewsListViewModel(application: Application) : AndroidViewModel(application), CoroutineScope {
+    val newsLD = MutableLiveData<List<News>>()
     val newsSingularLD = MutableLiveData<News>()
-    val TAG = "volleyTag"
-    private var queue: RequestQueue? = null
 
-    //gets all news
-    fun refresh() {
-        queue = Volley.newRequestQueue(getApplication())
-        val url = "http://10.0.2.2/160420070_anmp_uts/news.php"
-        val stringRequest = StringRequest(
-            Request.Method.GET, url, {
-                val cType = object : TypeToken<List<News>>() { }.type
-                val result = Gson().fromJson<List<News>>(it,cType)
+    private var job = Job()
 
-                newsLD.value = result as ArrayList<News>
-            },
-            {
-                Log.d("VolleyError", it.toString())
-            })
+    override val coroutineContext: CoroutineContext get() = job + Dispatchers.IO
 
-        stringRequest.tag = TAG
-        queue?.add(stringRequest)
+    fun fetchByID(id: Int){
+        launch {
+            val db = ModelDatabase.buildDatabase(
+                getApplication()
+            )
+
+            newsSingularLD.postValue(db.modelDao().fetchNewsByID(id))
+        }
     }
 
-    //gets specific news with ID
-    fun fetch(newsId: Int){
-        queue = Volley.newRequestQueue(getApplication())
-        val url = "http://10.0.2.2/160420070_anmp_uts/news.php?searchID=$newsId"
-        val stringRequest = StringRequest(
-            Request.Method.GET, url, {
-                val cType = object : TypeToken<List<News>>() { }.type
-                val result = Gson().fromJson<List<News>>(it,cType)
+    fun fetch(){
+        launch {
+            val db = ModelDatabase.buildDatabase(
+                getApplication()
+            )
 
-                newsSingularLD.value = result[0]
-                Log.d("text", result.toString())
-            },
-            {
-                Log.d("VolleyError", it.toString())
-            })
-
-        stringRequest.tag = TAG
-        queue?.add(stringRequest)
+            newsLD.postValue(db.modelDao().fetchNews())
+        }
     }
 }

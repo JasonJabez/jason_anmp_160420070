@@ -40,7 +40,8 @@ class FragmentLogin : Fragment() {
             var password = binding.txtLoginPassword.text.toString()
 
             var userDetailViewModel = ViewModelProvider(this).get(UserDetailViewModel::class.java)
-            userDetailViewModel.fetch(username, password)
+
+            userDetailViewModel.fetchByCreds(username, password)
 
             Handler().postDelayed(Runnable{
                 if(userDetailViewModel.userLD.value != null){

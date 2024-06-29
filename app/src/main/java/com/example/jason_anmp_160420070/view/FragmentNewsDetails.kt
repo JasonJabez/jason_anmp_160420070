@@ -8,11 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
-import com.example.jason_anmp_160420070.R
 import com.example.jason_anmp_160420070.databinding.FragmentNewsDetailsBinding
 import com.example.jason_anmp_160420070.viewmodel.NewsListViewModel
-import com.example.jason_anmp_160420070.viewmodel.UserDetailViewModel
-import com.squareup.picasso.Picasso
 import kotlin.math.ceil
 
 class FragmentNewsDetails : Fragment() {
@@ -30,7 +27,7 @@ class FragmentNewsDetails : Fragment() {
         val newsId = FragmentNewsDetailsArgs.fromBundle(requireArguments()).newsId
         val newsPage = FragmentNewsDetailsArgs.fromBundle(requireArguments()).newsPage
 
-        var newsDetailsViewModel = ViewModelProvider(this).get(NewsListViewModel::class.java)
+        val newsDetailsViewModel = ViewModelProvider(this).get(NewsListViewModel::class.java)
         newsDetailsViewModel.fetchByID(newsId)
 
         Handler().postDelayed(Runnable {
@@ -54,11 +51,8 @@ class FragmentNewsDetails : Fragment() {
                 newsText_paged = newsData?.newsText!!.substring(0, 1100)
             }
 
-            Picasso.get().load(newsData?.newsPicDir).fit().centerCrop()
-                .into(binding.imageViewNewsPicture)
-            binding.textViewTitle.setText(newsData?.title)
-            binding.textViewAuthor.setText("By: " + newsData?.author)
-            binding.textViewNewsText.setText(newsText_paged)
+            binding.newsDetailsItem = newsData
+            binding.newsPagedText = newsText_paged
             binding.textViewPage.setText(
                 newsPage.toString() + " / " + ceil(newsData?.newsText?.length!!.toDouble() / 1100).toInt()
                     .toString()

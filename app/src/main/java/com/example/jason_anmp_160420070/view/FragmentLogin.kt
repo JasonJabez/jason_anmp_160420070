@@ -9,7 +9,6 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
-import com.example.jason_anmp_160420070.R
 import com.example.jason_anmp_160420070.databinding.FragmentLoginBinding
 import com.example.jason_anmp_160420070.viewmodel.UserDetailViewModel
 import com.squareup.picasso.Picasso
@@ -36,12 +35,10 @@ class FragmentLogin : Fragment() {
         }
 
         binding.btnLogin.setOnClickListener{
-            var username = binding.txtLoginUsername.text.toString()
-            var password = binding.txtLoginPassword.text.toString()
+            val userDetailViewModel = ViewModelProvider(this).get(UserDetailViewModel::class.java)
+            binding.userLoginViewmodel = userDetailViewModel
 
-            var userDetailViewModel = ViewModelProvider(this).get(UserDetailViewModel::class.java)
-
-            userDetailViewModel.fetchByCreds(username, password)
+            userDetailViewModel.fetchByCreds()
 
             Handler().postDelayed(Runnable{
                 if(userDetailViewModel.userLD.value != null){

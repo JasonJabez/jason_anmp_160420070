@@ -6,9 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.Navigation
-import com.example.jason_anmp_160420070.R
 import com.example.jason_anmp_160420070.databinding.FragmentLoginActionChooserBinding
-import com.example.jason_anmp_160420070.databinding.FragmentLoginBinding
 
 class FragmentLoginActionChooser : Fragment() {
 

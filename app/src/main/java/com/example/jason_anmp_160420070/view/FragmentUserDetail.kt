@@ -11,7 +11,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import com.example.jason_anmp_160420070.databinding.FragmentUserDetailBinding
 import com.example.jason_anmp_160420070.viewmodel.UserDetailViewModel
-import com.squareup.picasso.Picasso
 
 class FragmentUserDetail : Fragment() {
     private lateinit var userDetailViewModel : UserDetailViewModel
@@ -35,9 +34,7 @@ class FragmentUserDetail : Fragment() {
             //TO BE CHANGED
             Handler().postDelayed(Runnable{
                 val myUser = userDetailViewModel.userLD.value
-                binding.txtFirstName.setText(myUser?.firstName.toString())
-                binding.txtLastName.setText(myUser?.lastName.toString())
-                binding.txtPasswordDetails.setText(myUser?.password.toString())
+                binding.userNow = myUser
             }, 200)
         }
 
@@ -49,12 +46,13 @@ class FragmentUserDetail : Fragment() {
         }
 
         binding.btnUpdateUserDetails.setOnClickListener{
-            val userId = FragmentUserDetailArgs.fromBundle(requireArguments()).userId
-            var firstName = binding.txtFirstName.text.toString()
-            var lastName = binding.txtLastName.text.toString()
-            var password = binding.txtPasswordDetails.text.toString()
 
-            var userDetailViewModel = ViewModelProvider(this).get(UserDetailViewModel::class.java)
+            val userId = binding.userNow!!.id!!
+            val firstName = binding.userNow!!.firstName!!
+            val lastName = binding.userNow!!.lastName!!
+            val password = binding.userNow!!.password!!
+
+            val userDetailViewModel = ViewModelProvider(this).get(UserDetailViewModel::class.java)
             userDetailViewModel.updateUser(firstName, lastName, password, userId)
 
             Handler().postDelayed(Runnable{

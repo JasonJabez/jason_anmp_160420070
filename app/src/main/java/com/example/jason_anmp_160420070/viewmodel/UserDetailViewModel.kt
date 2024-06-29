@@ -22,6 +22,13 @@ import kotlin.coroutines.CoroutineContext
 class UserDetailViewModel(application: Application) : AndroidViewModel(application), CoroutineScope {
     val userLD = MutableLiveData<User?>()
 
+    // 2way binding (login register)
+    val username = MutableLiveData<String>()
+    val password = MutableLiveData<String>()
+    val firstName = MutableLiveData<String>()
+    val lastName = MutableLiveData<String>()
+    val email = MutableLiveData<String>()
+
     private var job = Job()
 
     override val coroutineContext: CoroutineContext get() = job + Dispatchers.IO
@@ -36,23 +43,30 @@ class UserDetailViewModel(application: Application) : AndroidViewModel(applicati
         }
     }
 
-    fun fetchByCreds(username: String, password: String){
+    fun fetchByCreds(){
         launch {
             val db = ModelDatabase.buildDatabase(
                 getApplication()
             )
 
-            userLD.postValue(db.modelDao().fetchByCreds(username, password))
+            if(username.value != null && password.value != null){
+                userLD.postValue(db.modelDao().fetchByCreds(username.value!!, password.value!!))
+            }
         }
     }
 
-    fun addUser(user:User){
+    fun addUser(){
         launch{
             val db = ModelDatabase.buildDatabase(
                 getApplication()
             )
 
-            db.modelDao().registerUser(user)
+            if(username.value != null && password.value != null && email.value != null && lastName.value != null && firstName.value != null){
+                val user = User(firstName=firstName.value!!, lastName=lastName.value!!, email=email.value!!,
+                    username=username.value!!, password=password.value!!)
+                db.modelDao().registerUser(user)
+            }
+
         }
     }
 

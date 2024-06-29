@@ -28,25 +28,25 @@ class NewsListViewModel(application: Application) : AndroidViewModel(application
 
     override val coroutineContext: CoroutineContext get() = job + Dispatchers.IO
 
-//    fun addNews(){
-//        launch {
-//            val db = ModelDatabase.buildDatabase(
-//                getApplication()
-//            )
-//
-//            db.modelDao().addNews()
-//        }
-//    }
-//
-//    fun nukeNews(){
-//        launch {
-//            val db = ModelDatabase.buildDatabase(
-//                getApplication()
-//            )
-//
-//            db.modelDao().nukeNews()
-//        }
-//    }
+    fun addNews(){
+        launch {
+            val db = ModelDatabase.buildDatabase(
+                getApplication()
+            )
+
+            db.modelDao().addNews()
+        }
+    }
+
+    fun nukeNews(){
+        launch {
+            val db = ModelDatabase.buildDatabase(
+                getApplication()
+            )
+
+            db.modelDao().nukeNews()
+        }
+    }
 
     fun fetchByID(id: Int){
         launch {

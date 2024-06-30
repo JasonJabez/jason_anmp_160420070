@@ -29,15 +29,15 @@ class FragmentLogin : Fragment() {
 
         Picasso.get().load("https://pbs.twimg.com/profile_images/785958695272259584/Hz_YL8Ov_400x400.jpg").fit().centerCrop().into(binding.imageViewMainApp)
 
+        val userDetailViewModel = ViewModelProvider(this).get(UserDetailViewModel::class.java)
+        binding.userLoginViewmodel = userDetailViewModel
+
         binding.btnGoToRegister.setOnClickListener{
             val action = FragmentLoginDirections.actionFragmentLoginToFragmentRegister()
             Navigation.findNavController(it).navigate(action)
         }
 
         binding.btnLogin.setOnClickListener{
-            val userDetailViewModel = ViewModelProvider(this).get(UserDetailViewModel::class.java)
-            binding.userLoginViewmodel = userDetailViewModel
-
             userDetailViewModel.fetchByCreds()
 
             Handler().postDelayed(Runnable{

@@ -21,7 +21,7 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/textInputLayoutFirstName"
-                android:layout_width="409dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="1dp"
                 android:layout_marginTop="25dp"
@@ -30,15 +30,15 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/txtFirstName"
-                    android:text="@={user_now.firstName}"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="First Name" />
+                    android:hint="First Name"
+                    android:text="@={user_now.firstName}" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/textInputLayoutLastName"
-                android:layout_width="409dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="1dp"
                 android:layout_marginTop="25dp"
@@ -48,14 +48,14 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/txtLastName"
                     android:layout_width="match_parent"
-                    android:text="@={user_now.lastName}"
                     android:layout_height="wrap_content"
-                    android:hint="Last Name" />
+                    android:hint="Last Name"
+                    android:text="@={user_now.lastName}" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/textInputLayoutPassword"
-                android:layout_width="409dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="1dp"
                 android:layout_marginTop="25dp"
@@ -66,8 +66,8 @@
                     android:id="@+id/txtPassword_details"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@={user_now.password}"
-                    android:hint="Password" />
+                    android:hint="Password"
+                    android:text="@={user_now.password}" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button

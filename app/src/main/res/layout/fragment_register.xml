@@ -82,7 +82,7 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textInputLayout_RegisterUsername"
-            android:layout_width="409dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="1dp"
             android:layout_marginTop="25dp"
@@ -93,13 +93,13 @@
                 android:id="@+id/txtRegisterUsername"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@={user_register_viewmodel.username}"
-                android:hint="Username" />
+                android:hint="Username"
+                android:text="@={user_register_viewmodel.username}" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textInputLayout_RegisterPassword"
-            android:layout_width="409dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="1dp"
             android:layout_marginTop="25dp"
@@ -110,8 +110,8 @@
                 android:id="@+id/txtRegisterPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@={user_register_viewmodel.password}"
-                android:hint="Password" />
+                android:hint="Password"
+                android:text="@={user_register_viewmodel.password}" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button

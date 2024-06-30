@@ -30,7 +30,12 @@ class FragmentRegister : Fragment() {
         binding.userRegisterViewmodel = userDetailViewModel
 
         binding.btnRegister.setOnClickListener{
-            if(binding.txtRegisterPassword.text.toString() == binding.txtRegisterPasswordRepeat.text.toString()){
+            if(binding.txtRegisterFname.text.toString() == "" || binding.txtRegisterPassword.text.toString() == "" ||
+                binding.txtRegisterLname.text.toString() == "" || binding.txtRegisterUsername.text.toString() == "" ||
+                binding.txtRegisterEmail.text.toString() == ""){
+                Toast.makeText(binding.root.context, "A field is empty.", Toast.LENGTH_SHORT).show()
+            }
+            else if(binding.txtRegisterPassword.text.toString() == binding.txtRegisterPasswordRepeat.text.toString()){
 
                 userDetailViewModel.addUser()
 

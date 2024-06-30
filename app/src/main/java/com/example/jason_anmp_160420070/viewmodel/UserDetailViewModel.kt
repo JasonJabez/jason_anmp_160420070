@@ -11,6 +11,7 @@ import com.android.volley.toolbox.Volley
 import com.example.jason_anmp_160420070.model.ModelDatabase
 import com.example.jason_anmp_160420070.model.News
 import com.example.jason_anmp_160420070.model.User
+import com.example.jason_anmp_160420070.util.buildDb
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import kotlinx.coroutines.CoroutineScope
@@ -35,9 +36,7 @@ class UserDetailViewModel(application: Application) : AndroidViewModel(applicati
 
     fun fetchByID(id: Int){
         launch {
-            val db = ModelDatabase.buildDatabase(
-                getApplication()
-            )
+            val db = buildDb(getApplication())
 
             userLD.postValue(db.modelDao().fetchByID(id))
         }
@@ -45,9 +44,7 @@ class UserDetailViewModel(application: Application) : AndroidViewModel(applicati
 
     fun fetchByCreds(){
         launch {
-            val db = ModelDatabase.buildDatabase(
-                getApplication()
-            )
+            val db = buildDb(getApplication())
 
             if(username.value != null && password.value != null){
                 userLD.postValue(db.modelDao().fetchByCreds(username.value!!, password.value!!))
@@ -57,9 +54,7 @@ class UserDetailViewModel(application: Application) : AndroidViewModel(applicati
 
     fun addUser(){
         launch{
-            val db = ModelDatabase.buildDatabase(
-                getApplication()
-            )
+            val db = buildDb(getApplication())
 
             if(username.value != null && password.value != null && email.value != null && lastName.value != null && firstName.value != null){
                 val user = User(firstName=firstName.value!!, lastName=lastName.value!!, email=email.value!!,
@@ -72,9 +67,7 @@ class UserDetailViewModel(application: Application) : AndroidViewModel(applicati
 
     fun updateUser(firstName:String, lastName:String, password:String, userID:Int){
         launch{
-            val db = ModelDatabase.buildDatabase(
-                getApplication()
-            )
+            val db = buildDb(getApplication())
 
             db.modelDao().updateUser(firstName, lastName, password, userID)
         }

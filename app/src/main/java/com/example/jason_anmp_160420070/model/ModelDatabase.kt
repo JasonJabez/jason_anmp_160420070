@@ -4,8 +4,10 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.example.jason_anmp_160420070.util.DB_NAME
+import com.example.jason_anmp_160420070.util.MIGRATION_1_2
 
-@Database(entities = arrayOf(User::class, News::class), version = 1)
+@Database(entities = arrayOf(User::class, News::class), version = 2)
 
 abstract class ModelDatabase: RoomDatabase() {
     abstract fun modelDao(): ModelDAO
@@ -18,8 +20,9 @@ abstract class ModelDatabase: RoomDatabase() {
             Room.databaseBuilder(
                 context.applicationContext,
                 ModelDatabase::class.java,
-                "newbie_anmp_uas")
-            .build()
+                DB_NAME)
+                .addMigrations(MIGRATION_1_2)
+                .build()
 
         operator fun invoke(context:Context){
             if(instance!=null){
